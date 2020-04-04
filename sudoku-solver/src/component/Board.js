@@ -1,6 +1,6 @@
 import React from 'react';
 import { SquareComponent } from './Square';
-import { Row } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 
 const BOARD_SIZE = 9;
 
@@ -10,14 +10,18 @@ export class BoardComponent extends React.Component {
     this.state = {
       squares: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null))
     };
+    
+    this.resetBoard = this.resetBoard.bind(this);
   }
-  
+
   handleClick(r, c) {
     const squares = this.state.squares.slice();
     let newValue = squares[r][c];
 
-    if (newValue === null || newValue === 9) {
+    if (newValue === null) {
       newValue = 1;
+    } else if (newValue === 9) {
+      newValue = null;
     } else {
       newValue++;
     }
@@ -39,19 +43,24 @@ export class BoardComponent extends React.Component {
     );
 
     return (
-      <Row 
+      <div
         key={"row-" + rowNumber.toString()}
         className="board-row"
       >
         {row}
-      </Row>
+      </div>
     );
+  }
+
+  resetBoard() {
+    let board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
+    this.setState({squares: board});
   }
 
   renderSquare(r, c) {
     return (
       <SquareComponent
-        key={"square-" + r.toString() + "-" + c.toString()} 
+        key={"square-" + r.toString() + "-" + c.toString()}
         value={this.state.squares[r][c]}
         onClick={() => this.handleClick(r, c)}
       />
@@ -61,7 +70,12 @@ export class BoardComponent extends React.Component {
   render() {
     return (
       <div>
+        <Col>
         {this.buildBoard()}
+        </Col>
+        <Row>
+          <Button variant='outline-dark' className='mt-5' onClick={this.resetBoard}>Reset</Button>
+        </Row>
       </div>
     );
   }

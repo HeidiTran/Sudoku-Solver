@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.square {
+  background: #fff;
+  float: left;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 64px;
+  margin: -0.5px;
+  padding: 0;
+  text-align: center;
+  width: 64px;
+}

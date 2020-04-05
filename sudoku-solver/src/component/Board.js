@@ -142,12 +142,7 @@ export class BoardComponent extends React.Component {
       </div>
     );
 
-    this.setState(
-      {
-        "showToast": true,
-        "toastBody": body
-      }
-    );
+    this.setState({showToast: true, toastBody: body});
   }
 
   showToastFail() {
@@ -157,13 +152,8 @@ export class BoardComponent extends React.Component {
         Invalid sudoku board! Please try again.
       </div>
     );
-
-    this.setState(
-      {
-        "showToast": true,
-        "toastBody": body
-      }
-    );
+    
+    this.setState({showToast: true, toastBody: body});
   }
 
   hideToast() {

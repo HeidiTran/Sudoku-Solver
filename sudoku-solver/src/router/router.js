@@ -6,7 +6,7 @@ import { NavMenuComponent } from '../component/NavMenu';
 import { HomeComponent } from '../component/Home';
 import { AboutComponent } from '../component/About';
 
-export const history = createHistory.createBrowserHistory();
+export const history = createHistory.createHashHistory();
 
 export const AppRouter = () => (
   <Router history={ history }>

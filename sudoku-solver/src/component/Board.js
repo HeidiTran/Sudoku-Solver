@@ -10,34 +10,17 @@ export class BoardComponent extends React.Component {
     super(props);
     this.state = {
       squares: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null)),
+      selectedCell: [],
       showNumPad: false
     };
     
     this.resetBoard = this.resetBoard.bind(this);
     this.solveAndUpdateBoard = this.solveAndUpdateBoard.bind(this);
     this.numPad = this.numPad.bind(this);
-    this.hanleNumPadClose = this.hanleNumPadClose.bind(this);
   }
 
   handleClick(r, c) {
-    this.setState({showNumPad: true});
-    const squares = this.state.squares.slice();
-    let newValue = squares[r][c];
-
-    if (newValue === null) {
-      newValue = 1;
-    } else if (newValue === 9) {
-      newValue = null;
-    } else {
-      newValue++;
-    }
-
-    squares[r][c] = newValue;
-    this.setState({squares: squares});
-  }
-
-  hanleNumPadClose() {
-    this.setState({showNumPad: false});
+    this.setState({showNumPad: true, selectedCell: [r, c] });
   }
 
   buildBoard() {
@@ -78,41 +61,53 @@ export class BoardComponent extends React.Component {
     );
   }
 
+  selectCellValue(value) {
+    let squares = this.state.squares.slice();
+    const selectedCell = this.state.selectedCell.slice();
+    squares[selectedCell[0]][selectedCell[1]] = value;
+    this.setState({squares: squares, showNumPad: false});
+  }
+
   numPad() {
     return (
-      <Modal show={this.state.showNumPad} onHide={this.hanleNumPadClose}>
+      <Modal show={this.state.showNumPad}>
         <Modal.Body>
           <CardGroup>
             <Card>
-              <Button variant="outline-success" onClick="">1</Button>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(1)}>1</Button>
             </Card>
             <Card>
-              <Button variant="outline-success">2</Button>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(2)}>2</Button>
             </Card>
             <Card>
-              <Button variant="outline-success">3</Button>
-            </Card>
-          </CardGroup>
-          <CardGroup>
-            <Card>
-              <Button variant="outline-success">4</Button>
-            </Card>
-            <Card>
-              <Button variant="outline-success">5</Button>
-            </Card>
-            <Card>
-              <Button variant="outline-success">6</Button>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(3)}>3</Button>
             </Card>
           </CardGroup>
           <CardGroup>
             <Card>
-              <Button variant="outline-success">7</Button>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(4)}>4</Button>
             </Card>
             <Card>
-              <Button variant="outline-success">8</Button>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(5)}>5</Button>
             </Card>
             <Card>
-              <Button variant="outline-success">9</Button>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(6)}>6</Button>
+            </Card>
+          </CardGroup>
+          <CardGroup>
+            <Card>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(7)}>7</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(8)}>8</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success" onClick={() => this.selectCellValue(9)}>9</Button>
+            </Card>
+          </CardGroup>
+          <CardGroup>
+            <Card>
+              <Button variant="outline-danger" onClick={() => this.selectCellValue(null)}>Clear</Button>
             </Card>
           </CardGroup>
         </Modal.Body>

@@ -19,6 +19,7 @@ export class BoardComponent extends React.Component {
     this.resetBoard = this.resetBoard.bind(this);
     this.solveAndUpdateBoard = this.solveAndUpdateBoard.bind(this);
     this.numPad = this.numPad.bind(this);
+    this.hideModal = this.hideModal.bind(this);
     this.showToastSuccess = this.showToastSuccess.bind(this);
     this.showToastFail = this.showToastFail.bind(this);
     this.hideToast = this.hideToast.bind(this);
@@ -73,11 +74,15 @@ export class BoardComponent extends React.Component {
     this.setState({squares: squares, showNumPad: false});
   }
 
+  hideModal() {
+    this.setState({showNumPad: false});
+  }
+
   numPad() {
     return (
-      <Modal show={this.state.showNumPad}>
+      <Modal show={this.state.showNumPad} onHide={this.hideModal} centered>
         <Modal.Body>
-          <CardGroup>
+          <CardGroup style={{"display": "flex"}}>
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(1)}>1</Button>
             </Card>
@@ -88,7 +93,7 @@ export class BoardComponent extends React.Component {
               <Button variant="outline-success" onClick={() => this.selectCellValue(3)}>3</Button>
             </Card>
           </CardGroup>
-          <CardGroup>
+          <CardGroup style={{"display": "flex"}}>
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(4)}>4</Button>
             </Card>
@@ -99,7 +104,7 @@ export class BoardComponent extends React.Component {
               <Button variant="outline-success" onClick={() => this.selectCellValue(6)}>6</Button>
             </Card>
           </CardGroup>
-          <CardGroup>
+          <CardGroup style={{"display": "flex"}}>
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(7)}>7</Button>
             </Card>
@@ -110,7 +115,7 @@ export class BoardComponent extends React.Component {
               <Button variant="outline-success" onClick={() => this.selectCellValue(9)}>9</Button>
             </Card>
           </CardGroup>
-          <CardGroup>
+          <CardGroup style={{"display": "flex"}}>
             <Card>
               <Button variant="outline-danger" onClick={() => this.selectCellValue(null)}>Clear</Button>
             </Card>

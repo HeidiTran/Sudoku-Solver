@@ -100,3 +100,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+.modal-content {
+  height: 180px;
+  width: 180px;
+}

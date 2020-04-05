@@ -17,8 +17,8 @@ export class NavMenuComponent extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/Sudoku-Solver">Home</Nav.Link>
+          {/* <Nav.Link href="/about">About</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

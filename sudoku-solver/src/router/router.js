@@ -13,9 +13,9 @@ export const AppRouter = () => (
     <NavMenuComponent />
     <Container fluid className="mt-3">
       <Switch>
-        <Route path='/home' component={ HomeComponent }/>
-        <Route path='/about' component={ AboutComponent }/>
-        <Redirect from='/' to='/home' />
+        <Route path='/Sudoku-Solver/home' component={ HomeComponent }/>
+        <Route path='/Sudoku-Solver/about' component={ AboutComponent }/>
+        <Redirect from='/' to='/Sudoku-Solver/home' />
       </Switch>
     </Container>
   </Router>

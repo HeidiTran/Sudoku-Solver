@@ -1,6 +1,6 @@
 import React from 'react';
 import { SquareComponent } from './Square';
-import { Row, Container, Button, Modal, CardGroup, Card, Toast } from 'react-bootstrap';
+import { Row, Container, Button, Modal, div, Card, Toast } from 'react-bootstrap';
 import { solveSudokuSucceed } from '../functions/solve';
  
 export const BOARD_SIZE = 9;
@@ -84,7 +84,7 @@ export class BoardComponent extends React.Component {
     return (
       <Modal show={this.state.showNumPad} onHide={this.hideModal} centered>
         <Modal.Body>
-          <CardGroup style={{"display": "flex"}}>
+          <div className="board-row">
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(1)}>1</Button>
             </Card>
@@ -94,8 +94,8 @@ export class BoardComponent extends React.Component {
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(3)}>3</Button>
             </Card>
-          </CardGroup>
-          <CardGroup style={{"display": "flex"}}>
+          </div>
+          <div className="board-row">
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(4)}>4</Button>
             </Card>
@@ -105,8 +105,8 @@ export class BoardComponent extends React.Component {
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(6)}>6</Button>
             </Card>
-          </CardGroup>
-          <CardGroup style={{"display": "flex"}}>
+          </div>
+          <div className="board-row">
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(7)}>7</Button>
             </Card>
@@ -116,12 +116,10 @@ export class BoardComponent extends React.Component {
             <Card>
               <Button variant="outline-success" onClick={() => this.selectCellValue(9)}>9</Button>
             </Card>
-          </CardGroup>
-          <CardGroup style={{"display": "flex"}}>
-            <Card>
+          </div>
+          <div className="board-row mt-2">
               <Button variant="outline-danger" onClick={() => this.selectCellValue(null)}>Clear</Button>
-            </Card>
-          </CardGroup>
+          </div>
         </Modal.Body>
       </Modal>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import { SquareComponent } from './Square';
 import { Row, Container, Button } from 'react-bootstrap';
 import { solveSudoku } from './solve';
-
+ 
 export const BOARD_SIZE = 9;
 
 export class BoardComponent extends React.Component {
@@ -71,7 +71,10 @@ export class BoardComponent extends React.Component {
   }
 
   solveAndUpdateBoard() {
+    let t0 = performance.now();
     let board = solveSudoku(this.state.squares.slice());
+    let t1 = performance.now();
+    console.log(`It took ${(t1 - t0).toFixed(3)} milliseconds to solve!`);
     this.setState({squares: board});
   }
 
@@ -81,7 +84,7 @@ export class BoardComponent extends React.Component {
         <Container>
           {this.buildBoard()}
         </Container>
-        <Row style={{"paddingBottom": "20px"}}>
+        <Row className="button-row">
           <Button
             variant='danger' 
             className='mt-5 mr-5' 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { SquareComponent } from './Square';
 import { Row, Container, Button } from 'react-bootstrap';
+import { solveSudoku } from './solve';
 
 export const BOARD_SIZE = 9;
 
@@ -12,6 +13,7 @@ export class BoardComponent extends React.Component {
     };
     
     this.resetBoard = this.resetBoard.bind(this);
+    this.solveAndUpdateBoard = this.solveAndUpdateBoard.bind(this);
   }
 
   handleClick(r, c) {
@@ -67,6 +69,11 @@ export class BoardComponent extends React.Component {
     );
   }
 
+  solveAndUpdateBoard() {
+    let board = solveSudoku(this.state.squares.slice());
+    this.setState({squares: board});
+  }
+
   render() {
     return (
       <div>
@@ -76,10 +83,17 @@ export class BoardComponent extends React.Component {
         <Row style={{"paddingBottom": "20px"}}>
           <Button
             variant='outline-dark' 
-            className='mt-5 reset-button' 
+            className='mt-5' 
             onClick={this.resetBoard}
           >
             Reset
+          </Button>
+          <Button
+            variant='outline-dark' 
+            className='mt-5' 
+            onClick={this.solveAndUpdateBoard}
+          >
+            Solve!
           </Button>
         </Row>
       </div>

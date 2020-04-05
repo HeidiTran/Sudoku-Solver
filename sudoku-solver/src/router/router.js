@@ -9,15 +9,15 @@ import { AboutComponent } from '../component/About';
 export const history = createHistory.createBrowserHistory();
 
 export const AppRouter = () => (
-    <Router history={ history }>
-        <NavMenuComponent />
-        <Container fluid className="mt-3">
-            <Switch>
-                <Route path='/home' component={ HomeComponent }/>
-                <Route path='/about' component={ AboutComponent }/>
-                <Redirect from='/' to='/home' />
-            </Switch>
-        </Container>
-    </Router>
+  <Router history={ history }>
+    <NavMenuComponent />
+    <Container fluid className="mt-3">
+      <Switch>
+        <Route path='/home' component={ HomeComponent }/>
+        <Route path='/about' component={ AboutComponent }/>
+        <Redirect from='/' to='/home' />
+      </Switch>
+    </Container>
+  </Router>
 );
 

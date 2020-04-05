@@ -78,9 +78,10 @@ export class BoardComponent extends React.Component {
       console.log(`It took ${(endTime - startTime).toFixed(3)} milliseconds to solve!`);
       this.setState({squares: board});
       // TODO: prevent users from changing cellValue after Sudoku is solved
+    } else {
+      console.log("FAIL!")
+      // TODO: Handle if solveSudokuSucceed fails due to invalid board
     }
-    
-    // TODO: Handle if solveSudokuSucceed fails due to invalid board
   }
 
   render() {

@@ -1,5 +1,8 @@
 import { BOARD_SIZE } from './Board';
 
+/**
+ * @param {number[][]} board 
+ */
 export function solveSudoku(board) {
   let validPositions = getValidPositions(board);
   backTrack(0, board, validPositions);

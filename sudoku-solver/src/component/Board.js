@@ -11,16 +11,21 @@ export class BoardComponent extends React.Component {
     this.state = {
       squares: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null)),
       selectedCell: [],
-      showNumPad: false
+      showNumPad: false,
+      showToast: false,
+      toastBody: ""
     };
     
     this.resetBoard = this.resetBoard.bind(this);
     this.solveAndUpdateBoard = this.solveAndUpdateBoard.bind(this);
     this.numPad = this.numPad.bind(this);
+    this.showToastSuccess = this.showToastSuccess.bind(this);
+    this.showToastFail = this.showToastFail.bind(this);
+    this.hideToast = this.hideToast.bind(this);
   }
 
   handleClick(r, c) {
-    this.setState({showNumPad: true, selectedCell: [r, c] });
+    this.setState({showNumPad: true, selectedCell: [r, c] }); 
   }
 
   buildBoard() {
@@ -120,13 +125,49 @@ export class BoardComponent extends React.Component {
     const startTime = performance.now();
     if (solveSudokuSucceed(board)) {
       const endTime = performance.now();
-      console.log(`It took ${(endTime - startTime).toFixed(3)} milliseconds to solve!`);
+      this.showToastSuccess((endTime - startTime).toFixed(3));
+      // TODO: Prevent user from clicking solve again after it has already been solved
       this.setState({squares: board});
       // TODO: prevent users from changing cellValue after Sudoku is solved
     } else {
-      
-      // TODO: Handle if solveSudokuSucceed fails due to invalid board
+      this.showToastFail();
     }
+  }
+
+  showToastSuccess(time) {
+    const body = (
+      <div>
+        <strong style={{"color": "green"}}>SUCCESS! </strong>
+        It took {time} milliseconds to solve your puzzle!
+      </div>
+    );
+
+    this.setState(
+      {
+        "showToast": true,
+        "toastBody": body
+      }
+    );
+  }
+
+  showToastFail() {
+    const body = (
+      <div>
+        <strong style={{"color": "red"}}>ERROR: </strong> 
+        Invalid sudoku board! Please try again.
+      </div>
+    );
+
+    this.setState(
+      {
+        "showToast": true,
+        "toastBody": body
+      }
+    );
+  }
+
+  hideToast() {
+    this.setState({"showToast": false});
   }
 
   render() {
@@ -140,12 +181,13 @@ export class BoardComponent extends React.Component {
           <Toast 
             style={{"position": "absolute", "bottom": "60px", "right": "0"}} 
             className="mr-3"
-            // show=
-            // delay=
-            // autohide
+            onClose={this.hideToast}
+            show={this.state.showToast}
+            delay={4000}
+            autohide
           >
             <Toast.Body>
-              TESTING TESTING 123 !!
+              {this.state.toastBody}
             </Toast.Body>
           </Toast>
         </div>

@@ -6,7 +6,7 @@ import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 export class FooterComponent extends React.Component {
   render() {
     return (
-      <Navbar expand="lg" variant="light" bg="light" sticky="bottom" fixed="bottom">
+      <Navbar expand="lg" variant="light" bg="light">
         <Navbar.Collapse className="justify-content-center">
           <Navbar.Text>
             Made with &hearts; by Heidi Tran and Sammy Tran

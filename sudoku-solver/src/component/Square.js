@@ -7,6 +7,7 @@ export class SquareComponent extends React.Component {
       <Button
         variant='outline-secondary' 
         id={this.props.id} 
+        disabled={this.props.disabled}
         onClick={this.props.onClick}
         className="square"
       >

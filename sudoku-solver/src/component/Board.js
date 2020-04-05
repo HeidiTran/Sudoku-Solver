@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SquareComponent } from './Square';
-import { Row, Container, Button } from 'react-bootstrap';
+import { Row, Container, Button, Modal, CardGroup, Card } from 'react-bootstrap';
 import { solveSudokuSucceed } from '../functions/solve';
  
 export const BOARD_SIZE = 9;
@@ -9,14 +9,18 @@ export class BoardComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null))
+      squares: Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null)),
+      showNumPad: false
     };
     
     this.resetBoard = this.resetBoard.bind(this);
     this.solveAndUpdateBoard = this.solveAndUpdateBoard.bind(this);
+    this.numPad = this.numPad.bind(this);
+    this.hanleNumPadClose = this.hanleNumPadClose.bind(this);
   }
 
   handleClick(r, c) {
+    this.setState({showNumPad: true});
     const squares = this.state.squares.slice();
     let newValue = squares[r][c];
 
@@ -30,6 +34,10 @@ export class BoardComponent extends React.Component {
 
     squares[r][c] = newValue;
     this.setState({squares: squares});
+  }
+
+  hanleNumPadClose() {
+    this.setState({showNumPad: false});
   }
 
   buildBoard() {
@@ -70,6 +78,48 @@ export class BoardComponent extends React.Component {
     );
   }
 
+  numPad() {
+    return (
+      <Modal show={this.state.showNumPad} onHide={this.hanleNumPadClose}>
+        <Modal.Body>
+          <CardGroup>
+            <Card>
+              <Button variant="outline-success" onClick="">1</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success">2</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success">3</Button>
+            </Card>
+          </CardGroup>
+          <CardGroup>
+            <Card>
+              <Button variant="outline-success">4</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success">5</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success">6</Button>
+            </Card>
+          </CardGroup>
+          <CardGroup>
+            <Card>
+              <Button variant="outline-success">7</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success">8</Button>
+            </Card>
+            <Card>
+              <Button variant="outline-success">9</Button>
+            </Card>
+          </CardGroup>
+        </Modal.Body>
+      </Modal>
+    );
+  }
+
   solveAndUpdateBoard() {
     const startTime = performance.now();
     const board = this.state.squares.slice();
@@ -89,6 +139,7 @@ export class BoardComponent extends React.Component {
       <div>
         <Container>
           {this.buildBoard()}
+          <this.numPad />
         </Container>
         <Row className="button-row mb-5 mt-5">
           <Button

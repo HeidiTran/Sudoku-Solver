@@ -1,15 +1,12 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import * as createHistory from 'history';
 import { NavMenuComponent } from '../component/NavMenu';
 import { HomeComponent } from '../component/Home';
 import { AboutComponent } from '../component/About';
 
-export const history = createHistory.createHashHistory();
-
 export const AppRouter = () => (
-  <Router history={ history }>
+  <Router>
     <NavMenuComponent />
     <Container fluid className="mt-3">
       <Switch>

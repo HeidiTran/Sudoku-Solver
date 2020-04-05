@@ -13,7 +13,8 @@ export class BoardComponent extends React.Component {
       selectedCell: [],
       showNumPad: false,
       showToast: false,
-      toastBody: ""
+      toastBody: "",
+      solved: false
     };
     
     this.resetBoard = this.resetBoard.bind(this);
@@ -52,7 +53,7 @@ export class BoardComponent extends React.Component {
 
   resetBoard() {
     const board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
-    this.setState({squares: board});
+    this.setState({squares: board, solved: false});
   }
 
   renderSquare(r, c) {
@@ -60,6 +61,7 @@ export class BoardComponent extends React.Component {
       <SquareComponent
         id={"square-" + r.toString() + "-" + c.toString()}
         key={"square-" + r.toString() + "-" + c.toString()}
+        disabled={this.state.solved}
         value={this.state.squares[r][c]}
         onClick={() => this.handleClick(r, c)}
       />
@@ -125,10 +127,8 @@ export class BoardComponent extends React.Component {
     const startTime = performance.now();
     if (solveSudokuSucceed(board)) {
       const endTime = performance.now();
+      this.setState({squares: board, solved: true});
       this.showToastSuccess((endTime - startTime).toFixed(3));
-      // TODO: Prevent user from clicking solve again after it has already been solved
-      this.setState({squares: board});
-      // TODO: prevent users from changing cellValue after Sudoku is solved
     } else {
       this.showToastFail();
     }
@@ -152,7 +152,7 @@ export class BoardComponent extends React.Component {
         Invalid sudoku board! Please try again.
       </div>
     );
-    
+
     this.setState({showToast: true, toastBody: body});
   }
 
@@ -185,7 +185,7 @@ export class BoardComponent extends React.Component {
           <Button variant='danger' className='mr-5' onClick={this.resetBoard}>
             Reset
           </Button>
-          <Button variant='success' onClick={this.solveAndUpdateBoard}>
+          <Button variant='success' disabled={this.state.solved} onClick={this.solveAndUpdateBoard}>
             Solve!
           </Button>
         </Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SquareComponent } from './Square';
 import { Row, Container, Button } from 'react-bootstrap';
-import { solveSudoku } from '../functions/solve';
+import { solveSudokuSucceed } from '../functions/solve';
  
 export const BOARD_SIZE = 9;
 
@@ -72,10 +72,15 @@ export class BoardComponent extends React.Component {
 
   solveAndUpdateBoard() {
     const startTime = performance.now();
-    const board = solveSudoku(this.state.squares.slice());
-    const endTime = performance.now();
-    console.log(`It took ${(endTime - startTime).toFixed(3)} milliseconds to solve!`);
-    this.setState({squares: board});
+    const board = this.state.squares.slice();
+    if (solveSudokuSucceed(board)) {
+      const endTime = performance.now();
+      console.log(`It took ${(endTime - startTime).toFixed(3)} milliseconds to solve!`);
+      this.setState({squares: board});
+      // TODO: prevent users from changing cellValue after Sudoku is solved
+    }
+    
+    // TODO: Handle if solveSudokuSucceed fails due to invalid board
   }
 
   render() {

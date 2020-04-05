@@ -1,12 +1,17 @@
 import { BOARD_SIZE } from '../component/Board';
+import { isValidSudoku } from './valid';
 
 /**
  * @param {number[][]} board 
+ * @returns {boolean}
  */
-export function solveSudoku(board) {
+export function solveSudokuSucceed(board) {
+  if (!isValidSudoku(board))
+    return false
+
   let validPositions = getValidPositions(board);
   backTrack(0, board, validPositions);
-  return board;
+  return true;
 }
 
 /**

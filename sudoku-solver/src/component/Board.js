@@ -2,7 +2,7 @@ import React from 'react';
 import { SquareComponent } from './Square';
 import { Row, Col, Button } from 'react-bootstrap';
 
-const BOARD_SIZE = 9;
+export const BOARD_SIZE = 9;
 
 export class BoardComponent extends React.Component {
   constructor(props) {

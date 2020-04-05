@@ -184,7 +184,7 @@ export class BoardComponent extends React.Component {
             </Toast.Body>
           </Toast>
         </div>
-        <Row className="button-row mb-5 mt-5">
+        <Row className="button-row mb-4 mt-4">
           <Button variant='danger' className='mr-5' onClick={this.resetBoard}>
             Reset
           </Button>

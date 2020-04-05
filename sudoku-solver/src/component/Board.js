@@ -1,6 +1,6 @@
 import React from 'react';
 import { SquareComponent } from './Square';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Container, Button } from 'react-bootstrap';
 
 export const BOARD_SIZE = 9;
 
@@ -70,11 +70,17 @@ export class BoardComponent extends React.Component {
   render() {
     return (
       <div>
-        <Col>
-        {this.buildBoard()}
-        </Col>
-        <Row>
-          <Button variant='outline-dark' className='mt-5' onClick={this.resetBoard}>Reset</Button>
+        <Container>
+          {this.buildBoard()}
+        </Container>
+        <Row style={{"paddingBottom": "20px"}}>
+          <Button
+            variant='outline-dark' 
+            className='mt-5 reset-button' 
+            onClick={this.resetBoard}
+          >
+            Reset
+          </Button>
         </Row>
       </div>
     );

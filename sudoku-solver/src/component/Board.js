@@ -1,6 +1,6 @@
 import React from 'react';
 import { SquareComponent } from './Square';
-import { Row, Container, Button } from 'react-bootstrap';
+import { Row, Container, Button, Toast } from 'react-bootstrap';
 import { solveSudokuSucceed } from '../functions/solve';
  
 export const BOARD_SIZE = 9;
@@ -71,15 +71,15 @@ export class BoardComponent extends React.Component {
   }
 
   solveAndUpdateBoard() {
-    const startTime = performance.now();
     const board = this.state.squares.slice();
+    const startTime = performance.now();
     if (solveSudokuSucceed(board)) {
       const endTime = performance.now();
       console.log(`It took ${(endTime - startTime).toFixed(3)} milliseconds to solve!`);
       this.setState({squares: board});
       // TODO: prevent users from changing cellValue after Sudoku is solved
     } else {
-      console.log("FAIL!")
+      
       // TODO: Handle if solveSudokuSucceed fails due to invalid board
     }
   }
@@ -90,18 +90,24 @@ export class BoardComponent extends React.Component {
         <Container>
           {this.buildBoard()}
         </Container>
-        <Row className="button-row mb-5 mt-5">
-          <Button
-            variant='danger' 
-            className='mr-5' 
-            onClick={this.resetBoard}
+        <div style={{"display": "flex"}}>
+          <Toast 
+            style={{"position": "absolute", "bottom": "60px", "right": "0"}} 
+            className="mr-3"
+            // show=
+            // delay=
+            // autohide
           >
+            <Toast.Body>
+              TESTING TESTING 123 !!
+            </Toast.Body>
+          </Toast>
+        </div>
+        <Row className="button-row mb-5 mt-5">
+          <Button variant='danger' className='mr-5' onClick={this.resetBoard}>
             Reset
           </Button>
-          <Button
-            variant='success'  
-            onClick={this.solveAndUpdateBoard}
-          >
+          <Button variant='success' onClick={this.solveAndUpdateBoard}>
             Solve!
           </Button>
         </Row>

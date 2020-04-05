@@ -6,6 +6,11 @@ export function solveSudoku(board) {
   return board;
 }
 
+/**
+ * @param {number} validPositionIndex 
+ * @param {number[][]} curBoard 
+ * @param {Position[]} validPositions 
+ */
 function backTrack(validPositionIndex, curBoard, validPositions) {
   if (isFinal(curBoard)) 
     return;
@@ -24,6 +29,10 @@ function backTrack(validPositionIndex, curBoard, validPositions) {
   });
 }
 
+/**
+ * @param {number[][]} board 
+ * @returns {Position[]}
+ */
 function getValidPositions(board) {
   let positions = [];
   for (let i = 0; i < BOARD_SIZE; i++) {
@@ -36,6 +45,10 @@ function getValidPositions(board) {
   return positions;
 }
 
+/**
+ * @param {number[][]} curBoard
+ * @return {boolean} 
+ */
 function isFinal(curBoard) {
   for (let i = 0; i < BOARD_SIZE; i++) {
     if (curBoard[i].indexOf(null) !== -1) 
@@ -45,6 +58,11 @@ function isFinal(curBoard) {
   return true;
 }
 
+/**
+ * @param {Position} position 
+ * @param {number[][]} curBoard 
+ * @returns {number[]} 
+ */
 function getNextSteps(position, curBoard) {
   let curRow = position.row;
   let curCol = position.col;

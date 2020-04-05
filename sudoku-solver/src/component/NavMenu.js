@@ -4,7 +4,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 export class NavMenuComponent extends React.Component {
   render() {
     return (
-      <Navbar bg="light" expand="lg" className="mb-5">
+      <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/home">SUDOKU SOLVER</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -18,7 +18,7 @@ export class BoardComponent extends React.Component {
 
   handleClick(r, c) {
     const squares = this.state.squares.slice();
-    const newValue = squares[r][c];
+    let newValue = squares[r][c];
 
     if (newValue === null) {
       newValue = 1;
@@ -84,17 +84,16 @@ export class BoardComponent extends React.Component {
         <Container>
           {this.buildBoard()}
         </Container>
-        <Row className="button-row">
+        <Row className="button-row mb-5 mt-5">
           <Button
             variant='danger' 
-            className='mt-5 mr-5' 
+            className='mr-5' 
             onClick={this.resetBoard}
           >
             Reset
           </Button>
           <Button
-            variant='success' 
-            className='mt-5' 
+            variant='success'  
             onClick={this.solveAndUpdateBoard}
           >
             Solve!

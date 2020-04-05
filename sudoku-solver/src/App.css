@@ -41,6 +41,7 @@
   box-shadow: none;
 }
 
+/* this is how you center buttons in a div */
 .board-row {
   display: flex;
   align-items: center;
@@ -58,11 +59,11 @@
   font-size: 32px;
   font-weight: bold;
   line-height: 34px;
-  height: 64px;
+  height: 50px;
   margin: -0.5px;
   padding: 0;
   text-align: center;
-  width: 64px;
+  width: 50px;
 }
 
 /* vertical line on the right of third col */
@@ -94,7 +95,7 @@
 }
 
 .button-row {
-  padding-bottom: 20px;
+  padding-bottom: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

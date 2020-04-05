@@ -1,7 +1,7 @@
 import React from 'react';
 import { SquareComponent } from './Square';
 import { Row, Container, Button } from 'react-bootstrap';
-import { solveSudoku } from './solve';
+import { solveSudoku } from '../functions/solve';
  
 export const BOARD_SIZE = 9;
 

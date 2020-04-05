@@ -1,4 +1,4 @@
-import { BOARD_SIZE } from './Board';
+import { BOARD_SIZE } from '../component/Board';
 
 /**
  * @param {number[][]} board 

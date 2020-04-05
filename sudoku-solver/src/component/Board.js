@@ -18,7 +18,7 @@ export class BoardComponent extends React.Component {
 
   handleClick(r, c) {
     const squares = this.state.squares.slice();
-    let newValue = squares[r][c];
+    const newValue = squares[r][c];
 
     if (newValue === null) {
       newValue = 1;
@@ -55,7 +55,7 @@ export class BoardComponent extends React.Component {
   }
 
   resetBoard() {
-    let board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
+    const board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
     this.setState({squares: board});
   }
 
@@ -71,10 +71,10 @@ export class BoardComponent extends React.Component {
   }
 
   solveAndUpdateBoard() {
-    let t0 = performance.now();
-    let board = solveSudoku(this.state.squares.slice());
-    let t1 = performance.now();
-    console.log(`It took ${(t1 - t0).toFixed(3)} milliseconds to solve!`);
+    const startTime = performance.now();
+    const board = solveSudoku(this.state.squares.slice());
+    const endTime = performance.now();
+    console.log(`It took ${(endTime - startTime).toFixed(3)} milliseconds to solve!`);
     this.setState({squares: board});
   }
 

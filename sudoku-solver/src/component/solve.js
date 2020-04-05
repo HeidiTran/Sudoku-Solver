@@ -25,7 +25,7 @@ function backTrack(validPositionIndex, curBoard, validPositions) {
 }
 
 function getValidPositions(board) {
-  let positions = new Array();
+  let positions = [];
   for (let i = 0; i < BOARD_SIZE; i++) {
     for (let j = 0; j < BOARD_SIZE; j++) {
       if (board[i][j] === null)

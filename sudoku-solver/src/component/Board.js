@@ -62,6 +62,7 @@ export class BoardComponent extends React.Component {
   renderSquare(r, c) {
     return (
       <SquareComponent
+        id={"square-" + r.toString() + "-" + c.toString()}
         key={"square-" + r.toString() + "-" + c.toString()}
         value={this.state.squares[r][c]}
         onClick={() => this.handleClick(r, c)}
@@ -82,14 +83,14 @@ export class BoardComponent extends React.Component {
         </Container>
         <Row style={{"paddingBottom": "20px"}}>
           <Button
-            variant='outline-dark' 
-            className='mt-5' 
+            variant='danger' 
+            className='mt-5 mr-5' 
             onClick={this.resetBoard}
           >
             Reset
           </Button>
           <Button
-            variant='outline-dark' 
+            variant='success' 
             className='mt-5' 
             onClick={this.solveAndUpdateBoard}
           >

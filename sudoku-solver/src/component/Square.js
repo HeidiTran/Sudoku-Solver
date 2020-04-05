@@ -4,8 +4,9 @@ import { Button } from 'react-bootstrap';
 export class SquareComponent extends React.Component {
   render() {
     return (
-      <Button 
+      <Button
         variant='outline-secondary' 
+        id={this.props.id} 
         onClick={this.props.onClick}
         className="square"
       >

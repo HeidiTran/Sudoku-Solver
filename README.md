@@ -1,2 +1,5 @@
-# Sudoku-Solver
-Solve 9x9 sudoku instantly
+# Sudoku Solver
+
+***Check out the website [here](https://heiditran.github.io/Sudoku-Solver/) !***
+
+![](./sudoku-solver/example.gif)
